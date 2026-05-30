@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { AppSidebar } from './sidebar-inset/app-sidebar';
+import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
+  imports: [AppSidebar, HlmSidebarImports, RouterOutlet],
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  template: `<app-sidebar>
+    <main hlmSidebarInset>
+      <header class="flex h-12 items-center justify-between px-4">
+        <button hlmSidebarTrigger><span class="sr-only"></span></button>
+        <router-outlet />
+      </header>
+    </main>
+    ng
+  </app-sidebar>`,
 })
-export class App {
-  protected readonly title = signal('ts-silvestre-aguilar-dashboard');
-}
+export class App {}
